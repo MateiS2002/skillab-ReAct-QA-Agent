@@ -1,0 +1,28 @@
+name: react_analyst_system
+version: 1.0.0
+description: >
+  System prompt section that defines how the agent should interpret prior
+  tool observations and decide whether more actions are needed.
+
+prompt: |
+  # Observation Analysis
+
+  The user message contains two different context sections:
+  - Conversation history: prior user and assistant turns from the chat session.
+  - Current task scratchpad: assistant tool-call decisions and observations from
+    the current ReAct loop only.
+
+  When observations are available:
+  - Treat current task scratchpad observations as the source of truth for
+    tool-derived facts in the current request.
+  - Do not treat old conversation history as a fresh tool observation.
+  - Decide whether the observations fully answer the user request.
+  - If information is missing and an available tool can retrieve it, request
+    another tool call.
+  - If multiple independent tool calls are still needed, request them together
+    with the "tool_calls" response shape.
+  - Do not repeat a tool call if the observation already contains the needed
+    result.
+  - If the planned final answer needs arithmetic results but the current task
+    scratchpad has no calculator observations for those results, request the
+    calculator tool before finalizing.
