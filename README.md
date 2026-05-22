@@ -108,6 +108,8 @@ OPENAI_API_KEY=YOUR_OPENAI_API_KEY
 OPENAI_MODEL=gpt-5-nano-2025-08-07
 ```
 
+During development, using the nano model was very inexpensive for this CLI workflow: roughly 300,000 tokens used cost about $0.04 in my testing.
+
 ### LiteLLM Provider
 
 Useful for local experimentation with Ollama-backed models:
